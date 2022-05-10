@@ -141,8 +141,6 @@ const getActiveKeyBoard = (data) => {
 	const shiftStatus = data.shiftStatus.value ? data.shiftStatus.active : data.shiftStatus.notActive;
 	const capslockStatus = data.capslockStatus.value ? data.capslockStatus.active : data.capslockStatus.notActive;
 
-	console.log(data, data.lettersList[data.languageStatus][capslockStatus][shiftStatus], data.languageStatus, shiftStatus, capslockStatus);
-	
 	return data.lettersList[data.languageStatus][capslockStatus][shiftStatus];
 }
 
@@ -302,7 +300,6 @@ const keybord = {
 				keyElem.classList.add('middle', 'light');
 				keyElem.innerHTML = '<i>CapsLock</i>';
 				keyElem.addEventListener('click', () => {
-					// this.toogleCapsLock();
 					keyElem.classList.add('active');
 					keyElem.classList.toggle('_active', this.properties.capslock);
 					updateDataKeyboard(dataKeyboard, ACTION_LIST.SET_CAPSLOCK_STATUS);
@@ -429,7 +426,6 @@ const keybord = {
 			case 'shiftright':
 				keyElem.classList.add('middle', 'shift');
 				keyElem.innerHTML = '<i>Shift</i>';
-				// let count = 0;
 				break;
 
 			case 'alt':
@@ -601,7 +597,6 @@ const keybord = {
 			keyElem.setAttribute('keyname', key);
 			keyElem.setAttribute('lowerCaseName', key.toUpperCase());
 			keyElem.classList.add('key');
-			console.log(keyElem);
 			switch (key) {
 			case 'backspace':
 				keyElem.addEventListener('mousedown', () => {
@@ -643,8 +638,6 @@ const keybord = {
 				keyElem.innerHTML = '<i>CapsLock</i>';
 
 				keyElem.addEventListener('click', (e) => {
-					// this.toogleCapsLock();
-					console.log('e.target')
 					keyElem.classList.add('active');
 					keyElem.classList.toggle('_active', this.properties.capslock);
 					updateDataKeyboard(dataKeyboard, ACTION_LIST.SET_CAPSLOCK_STATUS);
@@ -655,7 +648,6 @@ const keybord = {
 				window.addEventListener('keydown', (e) => {
 					if(e.code === 'CapsLock') {
 						document.querySelector('.capslock').classList.toggle('active');
-						// this.toogleCapsLock();
 						keyElem.classList.add('active');
 						keyElem.classList.toggle('_active', this.properties.capslock);
 
@@ -666,7 +658,6 @@ const keybord = {
 
 					}
 				});
-
 
 				break;
 
@@ -807,8 +798,6 @@ const keybord = {
 				keyElem.style.transform = 'rotate(90deg)';
 				keyElem.style.width = '60px';
 
-
-
 				window.addEventListener('keydown', (e) => {
 					if(e.code === 'ArrowDown') {
 						document.querySelector('.down').classList.add('active');
@@ -836,13 +825,6 @@ const keybord = {
 					updateDataKeyboard(dataKeyboard, ACTION_LIST.SET_SHIFT_STATUS);
 					this.keysLayout = dataKeyboard.activeKeyBoard;
 					keybord.reload();
-					// count++;
-					// this.toogleCapsLock();
-					// this.triggerEvent('oninput');
-					
-					// if(count % 2 === 0) {
-					// 	keyElem.classList.remove('active');
-					// }
 										
 				});
 
@@ -855,7 +837,6 @@ const keybord = {
     						e.preventDefault();
 						} else {
 							document.querySelectorAll('.shift')[0].classList.add('active');
-							// this.toogleCapsLock();
 							this.triggerEvent('oninput');
 
 							updateDataKeyboard(dataKeyboard, ACTION_LIST.SET_SHIFT_STATUS);
@@ -867,7 +848,6 @@ const keybord = {
 						keyElem.classList.add('active');
 						this.properties.value += this.properties.capslock ? key.toUpperCase() : key;
 						this.triggerEvent('oninput');
-
 					}
 				});
 
@@ -876,9 +856,6 @@ const keybord = {
 						this.shiftPres = false;  
 
 						document.querySelectorAll('.shift')[0].classList.remove('active');
-						
-						// this.toogleCapsLock();
-						// this.triggerEvent('oninput');
 
 						updateDataKeyboard(dataKeyboard, ACTION_LIST.SET_SHIFT_STATUS);
 						this.keysLayout = dataKeyboard.activeKeyBoard;
@@ -891,9 +868,8 @@ const keybord = {
 			case 'shiftright':
 				keyElem.classList.add('middle', 'shift');
 				keyElem.innerHTML = '<i>Shift</i>';
-				// let count = 0;
+
 				keyElem.addEventListener('click', () => {
-					// count++;
 					keyElem.classList.add('active');
 					this.toogleCapsLock();
 					this.triggerEvent('oninput');
@@ -978,7 +954,6 @@ const keybord = {
 					if(e.code === 'AltLeft') {
 						keyElem.classList.remove('active')
 					}
-							
 				});
 
 				break;
@@ -1093,11 +1068,6 @@ const keybord = {
 	toogleCapsLock() {
 		this.properties.capslock = !this.properties.capslock;
 
-		// for (const key of this.elements.keys) {
-		// 	if(key.childElementCount === 0) {
-		// 		key.textContent = this.properties.capslock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
-		// 	}
-		// }
 	},
 
 	show(initialValue, oninput, onclose) {
